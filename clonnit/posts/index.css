@@ -1,5 +1,6 @@
 body {
-  background-color: red;
+  font-family: monospace;
+  background-color: grey;
 }
 
 main {
@@ -33,14 +34,22 @@ main {
 }
 
 .container .col {
-  background: lightblue;
+  float: left;
+  padding: 10px;
+  height: 300px;
 }
 
 .container .col p {
   padding: 0.25rem 0.75rem;
 }
 
-@media only screen and (min-width: 800px) {
+.container:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+@media only screen and (min-width: 600px) {
   .container .col {
     float: left;
     width: 50%;
@@ -66,6 +75,10 @@ nav a {
 nav a:hover {
   background-color: #ddd;
   color: black;
+}
+
+nav a.profile {
+  float: right;
 }
 
 /* Page content */
