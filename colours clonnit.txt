@@ -1,0 +1,6 @@
+Search bar                 #253341
+Search text                #8899A6
+Boxes                      #192734
+Boxes:hover                #202E3A
+Background                 #15202B
+posts                      #1C2732
