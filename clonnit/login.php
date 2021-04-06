@@ -1,6 +1,6 @@
 <?php
-  require('./classes/User.php');
-$errors = array('email'=>'', 'password'=>'');
+  
+  $errors = array('email'=>'', 'password'=>'');
 $email = '';
 $password = '';
 

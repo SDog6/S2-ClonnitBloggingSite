@@ -1,5 +1,5 @@
 <?php
-  require('./classes/User.php');
+  include_once('classes/UserDataManagement.class.php');
 
 $errors = array('username'=>'', 'email'=>'', 'password'=>'');
 $username = '';
@@ -48,7 +48,12 @@ $password = '';
         }
         else
         {
-            
+            $username = $_POST["username"];
+            $password = $_POST["password"];
+            $email = $_POST["email"];
+            $register = new Userdata();
+            $register->RegisterAUser($username,$email,$password);
+            echo 'Successful registration';
         }
     }
 
@@ -74,7 +79,6 @@ $password = '';
 
 
 <?php include("./templates/footer.php");?>
-<?php include ("./classes/PDO.php");?>
 <?php
 echo "<h2>Your Input:</h2>";
 echo $username;
