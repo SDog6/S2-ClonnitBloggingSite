@@ -1,4 +1,5 @@
 <?php
+  require('./classes/User.php');
 
 $errors = array('username'=>'', 'email'=>'', 'password'=>'');
 $username = '';
@@ -47,14 +48,13 @@ $password = '';
         }
         else
         {
-            header('Location: index.php');
+            
         }
     }
 
 ?>
 
 <!DOCTYPE html>
-
 <?php include("./templates/header.php");?>
 
 <section class="credentials-container">
@@ -72,6 +72,17 @@ $password = '';
     </form>
 </section>
 
+
 <?php include("./templates/footer.php");?>
+<?php include ("./classes/PDO.php");?>
+<?php
+echo "<h2>Your Input:</h2>";
+echo $username;
+echo "<br>";
+echo $email;
+echo "<br>";
+echo $password;
+echo "<br>";        
+?>
 
 </html>

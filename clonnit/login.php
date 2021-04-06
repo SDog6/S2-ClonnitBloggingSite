@@ -1,5 +1,5 @@
 <?php
-
+  require('./classes/User.php');
 $errors = array('email'=>'', 'password'=>'');
 $email = '';
 $password = '';
@@ -60,5 +60,6 @@ $password = '';
 </section>
 
 <?php include("./templates/footer.php");?>
+
 
 </html>
