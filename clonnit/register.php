@@ -85,7 +85,7 @@ echo $username;
 echo "<br>";
 echo $email;
 echo "<br>";
-echo password_hash($password, PASSWORD_DEFAULT);
+echo $password;
 echo "<br>";        
 ?>
 
