@@ -1,5 +1,5 @@
 <?php
-spl_autoload_register('prjAutoloader')
+spl_autoload_register('prjAutoloader');
 
 function prjAutoloader ($className) {
     $path = 'classes/';

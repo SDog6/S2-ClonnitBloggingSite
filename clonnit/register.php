@@ -52,7 +52,7 @@ $password = '';
             $password = $_POST["password"];
             $email = $_POST["email"];
             $register = new Userdata();
-            $register->RegisterAUser($username,$email,$password);
+            $register->RegisterAUser($username,$email,password_hash($password, PASSWORD_DEFAULT));
             echo 'Successful registration';
         }
     }
@@ -85,7 +85,7 @@ echo $username;
 echo "<br>";
 echo $email;
 echo "<br>";
-echo $password;
+echo password_hash($password, PASSWORD_DEFAULT);
 echo "<br>";        
 ?>
 
