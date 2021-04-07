@@ -1,6 +1,7 @@
 <?php
-  
-  $errors = array('email'=>'', 'password'=>'');
+  include_once('./includes/autoload.inc.php');
+
+$errors = array('email'=>'', 'password'=>'');
 $email = '';
 $password = '';
 

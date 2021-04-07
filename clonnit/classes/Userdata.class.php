@@ -1,6 +1,6 @@
 <?php
-  include_once('classes/UserDataManagement.class.php');
-  class Userdata extends Connection{
+include_once 'PDO.class.php';
+class Userdata extends Connection{
 
 
 public function RegisterAUser($newusername,$newemail,$newpassword){
@@ -8,10 +8,6 @@ public function RegisterAUser($newusername,$newemail,$newpassword){
     $stmt = $this->Connect()->prepare($sql);
     $stmt->execute(['username' => $newusername, 'email' => $newemail, 'password' => $newpassword]);
 }
-/* 
-public function GetAUser($username,$password){
-    sql = 'SELECT FROM user'
-}
- */
+
 }
 ?>

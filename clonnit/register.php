@@ -1,5 +1,5 @@
 <?php
-  include_once('classes/UserDataManagement.class.php');
+  include_once('./includes/autoload.inc.php');
 
 $errors = array('username'=>'', 'email'=>'', 'password'=>'');
 $username = '';
