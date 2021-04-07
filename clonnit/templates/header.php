@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <html lang="en">
 
 <head>
@@ -13,11 +16,19 @@
 <body>
     <header>
         <nav>
-            <a href="#" class="navButtons" id="homeBtn">Home</a>
+            <a href="index.php" class="navButtons" id="homeBtn">Home</a>
             <div class="search-box">
                 <input class="search-txt" type="text" name="search" id="search" placeholder="Search Clonnit">
                 <a class="search-btn" href="#"><i class="fas fa-search"></i></a>
             </div>
-            <a href="#" class="navButtons" id="profileBtn">Profile</a>
+            <?php 
+                if(isset($_SESSION["username"])){
+                    echo "<a href='scripts/logout.php' class='navButtons' id='profileBtn'>Logout</a>";
+                    echo "<a href='#' class='navButtons' id='profileBtn'>" . $_SESSION["username"] ."</a>";
+                }
+                else {
+                     echo "<a href='login.php' class='navButtons' id='profileBtn'>Login</a>";
+                }
+             ?>
         </nav>
     </header>

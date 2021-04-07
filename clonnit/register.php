@@ -53,7 +53,7 @@ $password = '';
             $email = $_POST["email"];
             $register = new Userdata();
             $register->RegisterAUser($username,$email,password_hash($password, PASSWORD_DEFAULT));
-            echo 'Successful registration';
+            header("location: register.php?error=none");
         }
     }
 
@@ -75,18 +75,17 @@ $password = '';
         <input type="submit" name="register" value="Create"><br>
         <div class="reg-log-link"><a href="./login.php">Already have an account?</a>
     </form>
+
+    <?php
+    if(isset($_GET["error"])){
+        if($_GET["error"] == "none"){
+            echo "<p>Sucessful registration</p>";
+        }
+    }
+    
+    ?>
 </section>
 
 
 <?php include("./templates/footer.php");?>
-<?php
-echo "<h2>Your Input:</h2>";
-echo $username;
-echo "<br>";
-echo $email;
-echo "<br>";
-echo password_hash($password, PASSWORD_DEFAULT);
-echo "<br>";        
-?>
-
 </html>

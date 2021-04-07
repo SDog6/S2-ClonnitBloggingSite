@@ -37,7 +37,25 @@ $password = '';
         }
         else
         {
-            header('Location: index.php');
+            $password = $_POST["password"];
+            $email = $_POST["email"];
+            $loginattempt = new Userdata();
+            $founduser = $loginattempt->GetAUser($email);
+            if($founduser === null){
+                header("login.php?error=wronglogin");
+            }
+            $hashpass = $founduser->GetPassword();
+            $checkpassword = password_verify($password, $hashpass);
+
+            if($checkpassword === false){
+                header("location: login.php?error=wronglogin");
+            }
+            else if($checkpassword === true){
+                session_start();
+                $_SESSION["id"] = $founduser->GetID();
+                $_SESSION["username"] = $founduser->GetUsername();
+                header("location: index.php");
+            }  
         }
     }
 ?>
@@ -58,7 +76,16 @@ $password = '';
         <div class="reg-log-link"><a href="./register.php">Don't have an account?</a>
         </div>
     </form>
+    <?php 
+ if(isset($_GET["error"])){
+    if($_GET["error"] == "wronglogin"){
+        echo "<p>Wrong login details!</p>";
+    }
+}
+?>
 </section>
+
+
 
 <?php include("./templates/footer.php");?>
 

@@ -14,18 +14,26 @@ public function __construct($id,$username,$password,$email){
     $this->email = $email;
 }
 
+
+public function GetID(){
+    return $this->id;
+}
+
 public function GetUsername(){
-    return "$this->username";
+    return $this->username;
 }
 
 public function GetPassword(){
-    return "$this->password";
+    return $this->password;
 }
 
 public function GetEmail(){
-    return "$this->email";
+    return $this->email;
 }
 
+public function GetInfo(){
+    return "ID:$this->id Username:$this->username Password:$this->password Email:$this->email";
+}
 
 }
 
