@@ -21,14 +21,6 @@ session_start();
                 <input class="search-txt" type="text" name="search" id="search" placeholder="Search Clonnit">
                 <a class="search-btn" href="#"><i class="fas fa-search"></i></a>
             </div>
-            <?php 
-                if(isset($_SESSION["username"])){
-                    echo "<a href='scripts/logout.php' class='navButtons' id='profileBtn'>Logout</a>";
-                    echo "<a href='#' class='navButtons' id='profileBtn'>" . $_SESSION["username"] ."</a>";
-                }
-                else {
-                     echo "<a href='login.php' class='navButtons' id='profileBtn'>Login</a>";
-                }
-             ?>
+            <?php include('./includes/changeNav.inc.php');?>
         </nav>
     </header>
