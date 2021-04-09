@@ -23,5 +23,18 @@ public function GetAUser($email){
     return $founduser;
 }
 
+public function GetAUserByID($id){
+    $sql = 'SELECT * FROM user WHERE id =?';
+    $stmt = $this->Connect()->prepare($sql);
+    $stmt->execute([$id]);
+    $user = $stmt->fetch();
+    $fid = $user->id;
+    $fusername= $user->username;
+    $fpassword = $user->password;
+    $femail = $user->email;
+    $founduser = new User($fid,$fusername,$fpassword,$femail);
+    return $founduser;
+}
+
 }
 ?>

@@ -1,6 +1,12 @@
 <?php 
 session_start();
 ?>
+
+<?php
+      include_once('./includes/autoload.inc.php');
+?>
+
+
 <html lang="en">
 
 <head>
@@ -17,6 +23,11 @@ session_start();
     <header>
         <nav>
             <a href="index.php" class="navButtons" id="homeBtn">Home</a>
+            <?php 
+            if(isset($_SESSION["username"])){
+                    echo "<a href='postcreation.php' class='navButtons' id='homeBtn'>Create a post</a>";
+                }
+            ?>
             <div class="search-box">
                 <input class="search-txt" type="text" name="search" id="search" placeholder="Search Clonnit">
                 <a class="search-btn" href="#"><i class="fas fa-search"></i></a>
@@ -24,7 +35,7 @@ session_start();
             <?php 
                 if(isset($_SESSION["username"])){
                     echo "<a href='scripts/logout.php' class='navButtons' id='profileBtn'>Logout</a>";
-                    echo "<a href='#' class='navButtons' id='profileBtn'>" . $_SESSION["username"] ."</a>";
+                    echo "<a href='profilepage.php' class='navButtons' id='profileBtn'>" . $_SESSION["username"] ."</a>";
                 }
                 else {
                      echo "<a href='login.php' class='navButtons' id='profileBtn'>Login</a>";
