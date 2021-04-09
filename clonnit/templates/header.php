@@ -41,5 +41,6 @@ session_start();
                      echo "<a href='login.php' class='navButtons' id='profileBtn'>Login</a>";
                 }
              ?>
+            <?php include('./includes/changeNav.inc.php');?>
         </nav>
     </header>
