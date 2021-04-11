@@ -8,12 +8,10 @@
                 <h2>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa, fugit?</h2>
             </div>
             <div class="left-content">
-                <p>
                 <?php
                 $s = new Contentdata();
                 $s->GetAllPosts();
                 ?>
-                </p>
             </div>
         </div>
     </main>

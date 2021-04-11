@@ -16,6 +16,9 @@ echo "Username: "  . $founduser->GetUsername();
 echo "<br>";
 echo "<br>";
 echo "Email: " . $founduser->GetEmail();
+echo "<br>";
+echo "<br>";
+echo "Password: ********** ";
 ?>
 
 </section>
