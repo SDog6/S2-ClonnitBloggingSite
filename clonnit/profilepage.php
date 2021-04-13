@@ -4,6 +4,8 @@
 
 <!DOCTYPE html>
 <?php include("./templates/header.php");?>
+<?php include_once("./scripts/protectedpage.php");?>
+
 
 <section class="credentials-container">
 
@@ -19,6 +21,15 @@ echo "Email: " . $founduser->GetEmail();
 echo "<br>";
 echo "<br>";
 echo "Password: ********** ";
+echo "<br>";
+echo "<br>";
+echo "<a href='changeusername.php' >Change username</a>";
+echo "<br>";
+echo "<a href='changeemail.php' >Change email</a>";
+echo "<br>";
+echo "<a href='changepassword.php' >Change password</a>";
+
+
 ?>
 
 </section>

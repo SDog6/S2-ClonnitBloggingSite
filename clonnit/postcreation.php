@@ -50,6 +50,7 @@ $content = '';
 
 <!DOCTYPE html>
 <?php include("./templates/header.php");?>
+<?php include_once("./scripts/protectedpage.php");?>
 
 <section class="credentials-container">
     <h3>Create a new post</h3>

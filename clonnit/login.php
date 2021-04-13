@@ -65,6 +65,14 @@ $password = '';
 <!DOCTYPE html>
 
 <?php include("./templates/header.php");?>
+<?php 
+if(isset($_SESSION["id"]))
+{
+  header("location: index.php");
+  exit;
+}
+?>
+
 
 <section class="credentials-container">
     <h3>Log into your account</h3>
