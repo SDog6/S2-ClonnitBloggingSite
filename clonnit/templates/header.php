@@ -25,7 +25,7 @@ session_start();
             <a href="index.php" class="navButtons" id="homeBtn">Home</a>
             <?php 
             if(isset($_SESSION["username"])){
-                    echo "<a href='postcreation.php' class='navButtons' id='homeBtn'>Create a post</a>";
+                    echo "<a href='postcreation.php' class='navButtons' id='homeBtn'>Post</a>";
                 }
             ?>
             <div class="search-box">
