@@ -26,7 +26,7 @@ public function Gettitle(){
 }
 
 public function Getcontent(){
-    return $this->content$content;
+    return $this->content;
 }
 
 public function Getauthor_id(){
@@ -38,7 +38,7 @@ public function GetTime(){
 }
 
 public function GetInfo(){
-    return "ID:$this->id title:$this->title content$content:$this->content$content author_id$author_id:$this->author_id$author_id";
+    return "ID:$this->id title:$this->title content:$this->content author_id:$this->author_id";
 }
 
 }

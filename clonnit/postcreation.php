@@ -52,12 +52,12 @@ $content = '';
 <?php include("./templates/header.php");?>
 <?php include_once("./scripts/protectedpage.php");?>
 
-<section class="credentials-container">
+<section class="post-container">
     <h3>Create a new post</h3>
     <form action="postcreation.php" method="POST">
         <input type="text" name="title" placeholder="Title" value="<?php echo htmlspecialchars($title) ?>"><br>
         <div class="error-msg-credentials"><?php echo $errors['title']?></div>
-        <input style="height:150px;width:400px;px;font-size:14pt" type="text" name="content" placeholder="Content" value="<?php echo htmlspecialchars($content) ?>"><br>
+        <textarea name="content" placeholder="Content"><?php echo htmlspecialchars($content) ?></textarea><br>
         <div class="error-msg-credentials"><?php echo $errors['content']?></div>
         <input type="submit" name="creation" value="Create"><br>
     </form>
@@ -74,4 +74,5 @@ $content = '';
 
 
 <?php include("./templates/footer.php");?>
+
 </html>
