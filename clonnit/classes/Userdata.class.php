@@ -10,6 +10,28 @@ public function RegisterAUser($newusername,$newemail,$newpassword){
     $stmt->execute(['username' => $newusername, 'email' => $newemail, 'password' => $newpassword]);
 }
 
+
+public function UpdateUsername($newusername,$id){
+    $sql = 'UPDATE user SET username = ? WHERE id = ?';
+    $stmt = $this->Connect()->prepare($sql);
+    $stmt->execute([$newusername],[$id]);
+    echo "nice";
+}
+
+
+public function UpdateEmail($newemail,$id){
+    $sql = 'UPDATE user SET email = ? WHERE id = ?';
+    $stmt = $this->Connect()->prepare($sql);
+    $stmt->execute([$newemail],[$id]);
+}
+
+
+public function UpdatePassword($newpassowrd,$providedid){
+    $sql = 'UPDATE user SET password = :password WHERE id = :id';
+    $stmt = $this->Connect()->prepare($sql);
+    $stmt->execute(['password' => $newpassowrd, 'id' => $providedid]);
+}
+
 public function GetAUser($email){
     $sql = 'SELECT * FROM user WHERE email =?';
     $stmt = $this->Connect()->prepare($sql);
