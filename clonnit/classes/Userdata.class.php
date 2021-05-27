@@ -63,24 +63,6 @@ public function GetAUserByID($id){
     return $founduser;
 }
 
-<<<<<<< HEAD
-public function GetUsernameCount($username){
-    $sql = "SELECT COUNT(*) AS num FROM user WHERE username='".$username."'";
-    $result = $this->Connect()->prepare($sql);
-    $result -> execute([$username]);
-    $numUsername = $result->fetchColumn();
-    return $numUsername;
-}
-
-public function GetEmailCount($email){
-    $sql = "SELECT COUNT(*) AS num FROM user WHERE email='".$email."'";
-    $result = $this->Connect()->prepare($sql);
-    $result -> execute([$email]);
-    $numEmail = $result->fetchColumn();
-    return $numEmail;
-}
-=======
->>>>>>> 7855f702f9cf2928506fb75f62bad7bd89bc516a
 
 }
 ?>

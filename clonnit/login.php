@@ -89,7 +89,7 @@ if(isset($_SESSION["id"]))
     <?php 
  if(isset($_GET["error"])){
     if($_GET["error"] == "wronglogin"){
-        echo "<div class='error-msg-credentials'><p>Wrong login details!</p></div>";
+        echo "<p>Wrong login details!</p>";
     }
 }
 ?>
