@@ -110,6 +110,27 @@ $password = '';
         elseif($confirmPassword === $password) {
             $errorMsgConfirmPassword = "The passwords must match!";
             $errorConfirmPassword = true;
+            
+        else
+        
+        {
+            $username = $_POST["username"];
+            $password = $_POST["password"];
+            $email = $_POST["email"];
+            $register = new Userdata();
+            $GotUserEmail = $register -> GetAUser($email);
+            $GotUserName = $register -> GetAUserByUsername($username);
+            if($GotUserEmail->GetEmail() === null AND $GotUserName->GetUsername() === null){
+                $register->RegisterAUser($username,$email,password_hash($password, PASSWORD_DEFAULT));
+                header("location: register.php?error=none");
+            }
+            else if($GotUserEmail->GetEmail() != null AND $GotUserName->GetUsername() === null){
+                header("location: register.php?error=takenemail");
+            }
+            else if($GotUserEmail->GetEmail() === null AND $GotUserName->GetUsername() != null){
+                header("location: register.php?error=takenuser");
+            }
+            
         }
 
     }
@@ -149,6 +170,29 @@ if(isset($_SESSION["id"]))
         <input type="submit" name="register" id="reg-submitbtn" value="Create"><br>
         <div class="reg-log-link"><a href="./login.php">Already have an account?</a>
     </form>
+
+    <?php
+    if(isset($_GET["error"])){
+        if($_GET["error"] == "none"){
+            echo "<p>Sucessful registration</p>";
+        }
+    }
+
+
+    if(isset($_GET["error"])){
+       if($_GET["error"] == "takenemail"){
+           echo "<p>Email already taken!</p>";
+       }
+   }
+
+   if(isset($_GET["error"])){
+    if($_GET["error"] == "takenuser"){
+        echo "<p>Username already taken!</p>";
+    }
+}
+
+    
+    ?>
 </section>
 <script src="app.js"></script>
 

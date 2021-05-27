@@ -8,11 +8,10 @@ private $content;
 private $author_id;
 private $timestamp;
 
-public function __construct($id,$title,$content,$author_id,$timestamp){
+public function __construct($id,$title,$content,$timestamp){
     $this->id = $id;
     $this->title = $title;
     $this->content = $content;
-    $this->author_id = $author_id;
     $this->timestamp = $timestamp;
 }
 

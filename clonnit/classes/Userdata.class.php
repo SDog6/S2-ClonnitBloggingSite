@@ -11,18 +11,10 @@ public function RegisterAUser($newusername,$newemail,$newpassword){
 }
 
 
-public function UpdateUsername($newusername,$id){
-    $sql = 'UPDATE user SET username = ? WHERE id = ?';
+public function UpdateEmail($newemail,$newid){
+    $sql = 'UPDATE user SET email = :email WHERE id = :id';
     $stmt = $this->Connect()->prepare($sql);
-    $stmt->execute([$newusername],[$id]);
-    echo "nice";
-}
-
-
-public function UpdateEmail($newemail,$id){
-    $sql = 'UPDATE user SET email = ? WHERE id = ?';
-    $stmt = $this->Connect()->prepare($sql);
-    $stmt->execute([$newemail],[$id]);
+    $stmt->execute(['email' => $newemail,'id' => $newid]);
 }
 
 
@@ -45,6 +37,19 @@ public function GetAUser($email){
     return $founduser;
 }
 
+public function GetAUserByUsername($username){
+    $sql = 'SELECT * FROM user WHERE username =?';
+    $stmt = $this->Connect()->prepare($sql);
+    $stmt->execute([$username]);
+    $user = $stmt->fetch();
+    $fid = $user->id;
+    $fusername= $user->username;
+    $fpassword = $user->password;
+    $femail = $user->email;
+    $founduser = new User($fid,$fusername,$fpassword,$femail);
+    return $founduser;
+}
+
 public function GetAUserByID($id){
     $sql = 'SELECT * FROM user WHERE id =?';
     $stmt = $this->Connect()->prepare($sql);
@@ -58,6 +63,7 @@ public function GetAUserByID($id){
     return $founduser;
 }
 
+<<<<<<< HEAD
 public function GetUsernameCount($username){
     $sql = "SELECT COUNT(*) AS num FROM user WHERE username='".$username."'";
     $result = $this->Connect()->prepare($sql);
@@ -73,6 +79,8 @@ public function GetEmailCount($email){
     $numEmail = $result->fetchColumn();
     return $numEmail;
 }
+=======
+>>>>>>> 7855f702f9cf2928506fb75f62bad7bd89bc516a
 
 }
 ?>
