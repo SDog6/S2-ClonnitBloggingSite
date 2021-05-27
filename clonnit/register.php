@@ -52,8 +52,19 @@ $password = '';
             $password = $_POST["password"];
             $email = $_POST["email"];
             $register = new Userdata();
-            $register->RegisterAUser($username,$email,password_hash($password, PASSWORD_DEFAULT));
-            header("location: register.php?error=none");
+            $GotUserEmail = $register -> GetAUser($email);
+            $GotUserName = $register -> GetAUserByUsername($username);
+            if($GotUserEmail->GetEmail() === null AND $GotUserName->GetUsername() === null){
+                $register->RegisterAUser($username,$email,password_hash($password, PASSWORD_DEFAULT));
+                header("location: register.php?error=none");
+            }
+            else if($GotUserEmail->GetEmail() != null AND $GotUserName->GetUsername() === null){
+                header("location: register.php?error=takenemail");
+            }
+            else if($GotUserEmail->GetEmail() === null AND $GotUserName->GetUsername() != null){
+                header("location: register.php?error=takenuser");
+            }
+            
         }
     }
 
@@ -89,6 +100,20 @@ if(isset($_SESSION["id"]))
             echo "<p>Sucessful registration</p>";
         }
     }
+
+
+    if(isset($_GET["error"])){
+       if($_GET["error"] == "takenemail"){
+           echo "<p>Email already taken!</p>";
+       }
+   }
+
+   if(isset($_GET["error"])){
+    if($_GET["error"] == "takenuser"){
+        echo "<p>Username already taken!</p>";
+    }
+}
+
     
     ?>
 </section>

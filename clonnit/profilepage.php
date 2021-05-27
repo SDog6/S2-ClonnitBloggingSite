@@ -8,7 +8,7 @@
 
 
 <section class="credentials-container">
-
+<div class="reg-log-link">
  <?php
 $id = $_SESSION["id"];
 $loginattempt = new Userdata();
@@ -23,15 +23,12 @@ echo "<br>";
 echo "Password: ********** ";
 echo "<br>";
 echo "<br>";
-echo "<a href='changeusername.php' >Change username</a>";
-echo "<br>";
 echo "<a href='changeemail.php' >Change email</a>";
 echo "<br>";
 echo "<a href='changepassword.php' >Change password</a>";
-
-
 ?>
 
+</div>
 </section>
 
 <?php include("./templates/footer.php");?>
