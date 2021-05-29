@@ -1,19 +1,13 @@
 <?php
 include_once './includes/autoload.inc.php';
 
-$username = $_POST['username'];
-$email = $_POST['email'];
-$password = $_POST['password'];
-$confirmPassword = $_POST['confirmPassword'];
+$username = htmlspecialchars($_POST['username']);
+$email = htmlspecialchars($_POST['email']);
+$password = htmlspecialchars($_POST['password']);
+$confirmPassword = htmlspecialchars($_POST['confirmPassword']);
 
 $ok = false;
 $canRegister = false;
-
-// $register->RegisterAUser(
-//   $username,
-//   $email,
-//   password_hash($password, PASSWORD_DEFAULT)
-// );
 
 if (!$username && !$email && !$password && !$confirmPassword) {
   echo 'All fields required!';
@@ -52,8 +46,6 @@ if (!$username && !$email && !$password && !$confirmPassword) {
             echo 'Passwords should match!';
             $ok = false;
           } else {
-            //success
-            //echo '<span id="success">Successfull registration!</span>';
             $ok = true;
           }
         }
@@ -62,85 +54,37 @@ if (!$username && !$email && !$password && !$confirmPassword) {
   }
 }
 
+//check for dublicates in db
 if ($ok == true) {
   $register = new Userdata();
   $usernameOk = false;
   $emailOk = false;
-  $usernameExist =
-    $register->GetAUserByUsername($username)->GetUsername() === null
-      ? false
-      : true;
-  $emailExist = $register->GetAUser($email)->GetEmail() === null ? false : true;
+  $usernameExist = $register->GetUsernameCount($username) == 0 ? false : true;
+  $emailExist = $register->GetEmailCount($email) == 0 ? false : true;
 
-  // if ($register->GetAUserByUsername($username) != null) {
-  //   echo 'Username is already taken!';
-  //   $usernameOk = false;
-  //   $canRegister = false;
-  // } else {
-  //   $usernameOk = true;
-  // }
-
-  // if ($register->GetAUser($email) != null) {
-  //   echo 'Email is already taken!';
-  //   $canRegister = false;
-  // } else {
-  //   $emailOk = true;
-  // }
-
-  // if (
-  //   $register->GetAUserByUsername($username) === null &&
-  //   $register->GetAUser($email) === null
-  // ) {
-  //   $canRegister = true;
-  // }
-
-  // if ($usernameExist && $emailExist) {
-  //   $usernameOk = false;
-  //   $emailOk = false;
-  // } elseif (!$usernameExist && $emailExist) {
-  //   $usernameOk = true;
-  //   $emailOk = false;
-  // } elseif ($usernameExist && !$emailExist) {
-  //   $usernameOk = false;
-  //   $emailOk = true;
-  // } elseif (!$usernameExist && !$emailExist) {
-  //   $usernameOk = true;
-  //   $emailOk = true;
-  // }
-
-  // if ($usernameExist) {
-  //   $usernameOk = false;
-  // } else {
-  //   $usernameOk = true;
-  // }
-  // if ($emailExist) {
-  //   $emailOk = false;
-  // } else {
-  //   $emailOk = true;
-  // }
+  if ($usernameExist && $emailExist) {
+    echo 'User with this username/email already exists!';
+    $canRegister = false;
+  } elseif ($usernameExist && !$emailExist) {
+    echo 'Username is already taken!';
+    $canRegister = false;
+  } elseif (!$usernameExist && $emailExist) {
+    echo 'Email is already in use!';
+    $canRegister = false;
+  } else {
+    $canRegister = true;
+  }
 }
-echo $usernameExist;
-echo $emailExist;
 
-// if ($usernameExist && $emailExist) {
-//   echo 'Username and email are already in use!';
-//   $canRegister = false;
-// } else {
-//   if ($usernameExist == true) {
-//   }
-// }
-
-// } elseif (
-//   $GotUserName->GetUsername() == null &&
-//   $GotUserEmail->GetEmail() != null
-// ) {
-//   echo 'Email is already taken!';
-//   $canRegister = false;
-// } elseif (
-//   $GotUserName->GetUsername() == null &&
-//   $GotUserEmail->GetEmail() == null
-// ) {
-//   $canRegister = true;
-// }
-
+//create user
+if ($canRegister == true) {
+  $register = new Userdata();
+  $register->RegisterAUser(
+    $username,
+    $email,
+    password_hash($password, PASSWORD_DEFAULT)
+  );
+  //success
+  echo '<span id="success">Successfull registration!</span>';
+}
 ?>
