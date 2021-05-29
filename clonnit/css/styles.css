@@ -42,7 +42,6 @@ footer {
   height: 40px;
   border-radius: 40px;
   padding: 0;
-
 }
 .search-box:hover {
   background: #202e3a;
@@ -259,7 +258,11 @@ input[type='password']:hover {
   text-align: center;
   font-size: 14px;
 }
-
+.error-msg-credentials #success {
+  color: limegreen;
+  text-align: center;
+  font-size: 14px;
+}
 /*post*/
 .post-container {
   display: flex;
