@@ -56,13 +56,29 @@ public function GetAUserByID($id){
     $stmt->execute([$id]);
     $user = $stmt->fetch();
     $fid = $user->id;
-    $fusername= $user->username;
+    $fusername = $user->username;
     $fpassword = $user->password;
     $femail = $user->email;
-    $founduser = new User($fid,$fusername,$fpassword,$femail);
+    $founduser = new User($fid, $fusername, $fpassword, $femail);
     return $founduser;
-}
+  }
 
+  public function GetUsernameCount($username)
+  {
+    $sql = "SELECT * from user where username='{$username}'";
+    $stmt = $this->Connect()->prepare($sql);
+    $stmt->execute();
+    $usernameCount = $stmt->rowCount();
+    return $usernameCount;
+  }
 
+  public function GetEmailCount($email)
+  {
+    $sql = "SELECT * from user where email='{$email}'";
+    $stmt = $this->Connect()->prepare($sql);
+    $stmt->execute();
+    $emailCount = $stmt->rowCount();
+    return $emailCount;
+  }
 }
 ?>

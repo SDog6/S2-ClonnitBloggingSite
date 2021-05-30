@@ -36,9 +36,6 @@ public function GetTime(){
     return $this->timestamp;
 }
 
-public function GetInfo(){
-    return "ID:$this->id title:$this->title content:$this->content time:$this->timestamp";
-}
 
 }
 

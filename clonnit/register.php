@@ -11,7 +11,7 @@ include_once './includes/autoload.inc.php'; ?>
 <section class="credentials-container">
     <h3>Create a new account</h3>
     <form id="register-form" action="register.php" method="POST">
-        <input type="text" id="reg-username" name="username" placeholder="Username"><br>
+        <input type="text" id="reg-username" name="username" placeholder="Username" spellcheck="false"><br>
 
         <input type="email" id="reg-email" name="email" placeholder="Email"><br>
 

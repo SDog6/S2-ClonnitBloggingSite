@@ -19,18 +19,13 @@ if(isset($_SESSION["username"])){
                 $posts = new Contentdata();
                 $array = $posts -> GetAllPosts();   
                 foreach($array as $value){
-                    echo ' <div class="left-title">  <h2> ' . $value->Gettitle() . '</h2> ';
-                    echo ' <p> ' . $value->Getcontent() . '</p> </div> <br>';
+                    $var_id = $value->GetID();
+                    echo '<a href="post.php?var_id=' . $var_id . '">  <div class="left-title">  <h2> ' . $value->Gettitle() . ' </h2> </a> </div> <br>';
 
                 }
                 
                 ?>
 
-
-            
-            <div class="right-title">
-                <h2>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa, fugit?</h2>
-            </div>
        
     </main>
 
