@@ -20,12 +20,20 @@ if(isset($_SESSION["username"])){
                 if (isset($_GET['search'])){
                     $serach = $_GET['search'];
                     $posts = new Contentdata();
-                    $array = $posts -> SerachPosts($serach);   
-                    foreach($array as $value){
-                        $var_id = $value->GetID();
-                        echo '<a href="post.php?var_id=' . $var_id . '">  <div class="left-title">  <h2> ' . $value->Gettitle() . ' </h2> </a> </div> <br>';
-    
+                    $array = $posts -> SerachPosts($serach);  
+                    
+                    if(count($array) === 0){
+                        echo "No posts found that match the criteria";
                     }
+                    else {
+                        foreach($array as $value){
+                            $var_id = $value->GetID();
+                            echo '<a href="post.php?var_id=' . $var_id . '">  <div class="left-title">  <h2> ' . $value->Gettitle() . ' </h2> </a> </div> <br>';
+        
+                        }
+
+                    }
+                  
 
                 }
                 else {
