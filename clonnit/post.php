@@ -63,11 +63,18 @@ $comment = '';
                     
                     <section class="post-container">
 
-                    <form action="post.php?var_id=<?php echo $var_value ?>" method="POST">
-                      <textarea name="comment" placeholder="Comment..."><?php echo htmlspecialchars($comment) ?></textarea><br>
-                      <div class="error-msg-credentials"><?php echo $errors["comment"]?></div>
-                       <input type="submit" name="creation" value="Create"><br>
-                       </form>
+                    <?php
+                    if(isset($_SESSION["id"])){
+                        echo ' <form action="post.php?var_id=' .$var_value . '" method="POST">
+                        <textarea name="comment" placeholder="Comment...">' . htmlspecialchars($comment) . '</textarea><br>
+                        <div class="error-msg-credentials">' .$errors["comment"]. '</div>
+                         <input type="submit" name="creation" value="Create"><br>
+                         </form> ' ;
+                    }
+                   
+                    
+                    ?>
+                   
                     
                        </section>
 
