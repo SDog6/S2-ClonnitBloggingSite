@@ -1,5 +1,6 @@
 <?php
   include_once('./includes/autoload.inc.php');
+  session_start();
 
 $errors = array('title'=>'', 'content'=>'');
 $title = '';
@@ -41,7 +42,7 @@ $content = '';
             $username =$founduser->GetUsername();
 
             $creation = new Contentdata();
-            $creation->CreateNewPost($title,$content);
+            $creation->CreateNewPost($title,$content,$id);
             header("location: postcreation.php?error=none");
         }
     }

@@ -16,10 +16,11 @@ if(isset($_SESSION["username"])){
             
 
                 <?php 
+                $userdata = new Userdata();
+                $posts = new Contentdata();
 
                 if (isset($_GET['search'])){
                     $serach = $_GET['search'];
-                    $posts = new Contentdata();
                     $array = $posts -> SerachPosts($serach);  
                     
                     if(count($array) === 0){
@@ -27,9 +28,23 @@ if(isset($_SESSION["username"])){
                     }
                     else {
                         foreach($array as $value){
+                            if(isset($_SESSION['id']))
+                        {
+                            $user = $userdata->GetAUserByID($_SESSION['id']);
+                            if($_SESSION['id'] === $value->Getauthor_id() or $user->GetAdminStatus() == 1){
+                                $var_id = $value->GetID();
+                                echo '<a href="post.php?var_id=' . $var_id . '">  <div class="left-title">  <h2> ' . $value->Gettitle() . ' </h2> </a> '; 
+                                echo  '<a href="./scripts/deletePost.php?var_id=' . $var_id . '">  <p> Delete </p></a> </div> <br>'  ;
+                            }
+                            else {
+                                $var_id = $value->GetID();
+                                echo '<a href="post.php?var_id=' . $var_id . '">  <div class="left-title">  <h2> ' . $value->Gettitle() . ' </h2> </a> '; 
+                            }
+                        }
+                        else {
                             $var_id = $value->GetID();
-                            echo '<a href="post.php?var_id=' . $var_id . '">  <div class="left-title">  <h2> ' . $value->Gettitle() . ' </h2> </a> </div> <br>';
-        
+                            echo '<a href="post.php?var_id=' . $var_id . '">  <div class="left-title">  <h2> ' . $value->Gettitle() . ' </h2> </a> </div> <br>';    
+                        }
                         }
 
                     }
@@ -37,11 +52,26 @@ if(isset($_SESSION["username"])){
 
                 }
                 else {
-                    $posts = new Contentdata();
                     $array = $posts -> GetAllPosts();   
                     foreach($array as $value){
-                        $var_id = $value->GetID();
-                        echo '<a href="post.php?var_id=' . $var_id . '">  <div class="left-title">  <h2> ' . $value->Gettitle() . ' </h2> </a> </div> <br>';    
+                        if(isset($_SESSION['id']))
+                        {
+                            $user = $userdata->GetAUserByID($_SESSION['id']);
+                            if($_SESSION['id'] === $value->Getauthor_id() or $user->GetAdminStatus() == 1){
+                                $var_id = $value->GetID();
+                                echo '<a href="post.php?var_id=' . $var_id . '">  <div class="left-title">  <h2> ' . $value->Gettitle() . ' </h2> </a> '; 
+                                echo  '<a href="./scripts/deletePost.php?var_id=' . $var_id . '">  <p> Delete </p></a> </div> <br>'  ;
+                            }
+                            else {
+                                $var_id = $value->GetID();
+                                echo '<a href="post.php?var_id=' . $var_id . '">  <div class="left-title">  <h2> ' . $value->Gettitle() . ' </h2> </a> '; 
+                            }
+                        }
+                        else {
+                            $var_id = $value->GetID();
+                            echo '<a href="post.php?var_id=' . $var_id . '">  <div class="left-title">  <h2> ' . $value->Gettitle() . ' </h2> </a> </div> <br>';    
+                        }
+                       
                     }
                 }
                

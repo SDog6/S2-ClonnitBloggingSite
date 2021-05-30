@@ -51,7 +51,12 @@ $comment = '';
                      $posts = new Contentdata();
                      $users = new Userdata();
                      $passedpost = $posts->GetAPostByID($var_value);
-                     echo '<div class="left-title">  <h3> ' . $passedpost->Gettitle() . ' </h3> </div> <br>';
+                     $id = $passedpost->Getauthor_id();
+                     $user = $users->GetAUserByID($id);
+
+                     echo '<div class="left-title">  <h3> ' . $passedpost->Gettitle() . ' </h3> 
+                     <p> Posted by:' . $user->GetUsername() .'</p>
+                     </div> <br>';
                       echo ' <div class="left-title">  <p> ' . $passedpost->Getcontent() . '</p> </div> <br>';
                       ?>
                     

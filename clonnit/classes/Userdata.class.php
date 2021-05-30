@@ -33,7 +33,8 @@ public function GetAUser($email){
     $fusername= $user->username;
     $fpassword = $user->password;
     $femail = $user->email;
-    $founduser = new User($fid,$fusername,$fpassword,$femail);
+    $admin = $user->admin;
+    $founduser = new User($fid,$fusername,$fpassword,$femail,$admin);
     return $founduser;
 }
 
@@ -46,7 +47,8 @@ public function GetAUserByUsername($username){
     $fusername= $user->username;
     $fpassword = $user->password;
     $femail = $user->email;
-    $founduser = new User($fid,$fusername,$fpassword,$femail);
+    $admin = $user->admin;
+    $founduser = new User($fid,$fusername,$fpassword,$femail,$admin);
     return $founduser;
 }
 
@@ -59,7 +61,8 @@ public function GetAUserByID($id){
     $fusername = $user->username;
     $fpassword = $user->password;
     $femail = $user->email;
-    $founduser = new User($fid, $fusername, $fpassword, $femail);
+    $admin = $user->admin;
+    $founduser = new User($fid, $fusername, $fpassword, $femail,$admin);
     return $founduser;
   }
 

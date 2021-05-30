@@ -4,10 +4,10 @@ include_once ('PDO.class.php');
 class Contentdata extends Connection{
 
 
-public function CreateNewPost($newtitle,$newcontent){
-    $sql = 'INSERT INTO post(post_title,post_content) VALUES(:post_title,:post_content)';
+public function CreateNewPost($newtitle,$newcontent,$author){
+    $sql = 'INSERT INTO post(post_title,post_content,author_id) VALUES(:post_title,:post_content,:author_id)';
     $stmt = $this->Connect()->prepare($sql);
-    $stmt->execute(['post_title' => $newtitle, 'post_content' => $newcontent]);
+    $stmt->execute(['post_title' => $newtitle, 'post_content' => $newcontent,'author_id' => $author]);
     
 }
 
@@ -24,7 +24,8 @@ public function GetAllPosts(){
         $ftitle = $posts->post_title;
         $fcontent = $posts->post_content;
         $time = $posts->timeOfPost;
-        $FPost = new Content($fid,$ftitle,$fcontent,$time);
+        $author = $posts->author_id;
+        $FPost = new Content($fid,$ftitle,$fcontent,$time,$author);
         array_push($postsarray,$FPost);
         
 
@@ -47,7 +48,8 @@ public function SerachPosts($name){
         $ftitle = $posts->post_title;
         $fcontent = $posts->post_content;
         $time = $posts->timeOfPost;
-        $FPost = new Content($fid,$ftitle,$fcontent,$time);
+        $author = $posts->author_id;
+        $FPost = new Content($fid,$ftitle,$fcontent,$time,$author);
         array_push($postsarray,$FPost);
         
 
@@ -64,6 +66,13 @@ public function DeletePost($id){
 }
 
 
+public function DeleteComments($id){
+    $sql = 'DELETE FROM comments WHERE post_id = :post_id';
+    $stmt = $this->Connect()->prepare($sql);
+    $stmt->execute(['post_id' => $id]);
+}
+
+
 
 public function GetAPostByID($id){
     $sql = 'SELECT * FROM post WHERE id=:id ';
@@ -74,7 +83,8 @@ public function GetAPostByID($id){
         $ftitle = $posts->post_title;
         $fcontent = $posts->post_content;
         $time = $posts->timeOfPost;
-        $FPost = new Content($fid,$ftitle,$fcontent,$time);
+        $author = $posts->author_id;
+        $FPost = new Content($fid,$ftitle,$fcontent,$time,$author);
         return $FPost;
 }
 
