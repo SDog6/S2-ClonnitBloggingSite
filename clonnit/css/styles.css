@@ -259,8 +259,11 @@ input[type='password']:hover {
   font-size: 14px;
 }
 
-
-
+.error-msg-credentials span {
+  color: limegreen;
+  text-align: center;
+  font-size: 14px;
+}
 
 /*post*/
 .post-container {
@@ -328,4 +331,3 @@ input[type='password']:hover {
   background-color: #3a5167;
   cursor: pointer;
 }
-
