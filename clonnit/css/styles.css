@@ -57,6 +57,7 @@ footer {
   justify-content: center;
   align-items: center;
   text-decoration: none;
+  border: 0;
 }
 .search-btn:hover {
   background: #2f4355;
@@ -105,17 +106,20 @@ footer {
   column-gap: 10px;
   row-gap: 5px;
   grid-template-areas:
-    'lt rt'
-    'lc rc';
+    'lt'
+    'lc';
   padding-bottom: 20px;
 }
 
 .left-title {
   grid-area: lt;
-  grid-column: 1 / 5;
+  grid-column: 2 / 7;
   background: #202c39;
   text-align: center;
   padding: 15px;
+  margin-top: 5px;
+  margin-bottom: -10px;
+  margin: 15px 15px -20px 15px;
 }
 .left-content {
   grid-area: lc;
@@ -124,21 +128,16 @@ footer {
   padding: 15px;
 }
 
-.right-title {
-  grid-area: rt;
-  grid-column: 5 / 8;
-  background: #202c39;
-  text-align: center;
-  padding: 15px;
+.left-title a {
+  text-decoration: none;
+  color: whitesmoke;
 }
-
-.right-content {
-  grid-area: rc;
-  grid-column: 5 / 8;
-  background: #1c2732;
-  padding: 15px;
+.left-title:hover {
+  background-color: #3c5872;
 }
-
+.left-title p {
+  color: #8899a6;
+}
 /*  */
 
 @media screen and (max-width: 600px) {
@@ -240,6 +239,14 @@ input[type='password']:hover {
   cursor: pointer;
 }
 
+.credentials-container #welcome {
+  position: relative;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: -10px;
+  font-weight: bolder;
+  font-size: larger;
+}
 .reg-log-link {
   text-align: center;
 }
