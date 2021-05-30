@@ -37,7 +37,11 @@ public function GetTime(){
 }
 
 public function GetInfo(){
+<<<<<<< HEAD
     return "ID:$this->id title:$this->title content:$this->content author_id:$this->author_id";
+=======
+    return "ID:$this->id title:$this->title content:$this->content time:$this->timestamp";
+>>>>>>> Hristo
 }
 
 }

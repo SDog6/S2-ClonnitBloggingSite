@@ -13,32 +13,22 @@ if(isset($_SESSION["username"])){
 ?>
 
 <main>
-        <div class="container">
             
 
                 <?php 
                 $posts = new Contentdata();
                 $array = $posts -> GetAllPosts();   
-
                 foreach($array as $value){
-                    echo '<div class="left-title"> <h2> Title:' . $value->Gettitle() . '</h2></div>';
-                }
+                    $var_id = $value->GetID();
+                    echo '<a href="post.php?var_id=' . $var_id . '">  <div class="left-title">  <h2> ' . $value->Gettitle() . ' </h2> </a> ';
 
+                    echo ' <p> ' . $value->Getcontent() . '</p> </div> <br>';
+
+                }
                 
                 ?>
 
-
-            
-            <div class="right-title">
-                <h2>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa, fugit?</h2>
-            </div>
-            <div class="left-content">
-                <p> Some content here</p>
-            </div>
-            <div class="right-content">
-                <p> Some content here</p>
-            </div>
-        </div>
+       
     </main>
 
 </section>

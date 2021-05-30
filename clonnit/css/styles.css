@@ -258,11 +258,6 @@ input[type='password']:hover {
   text-align: center;
   font-size: 14px;
 }
-.error-msg-credentials #success {
-  color: limegreen;
-  text-align: center;
-  font-size: 14px;
-}
 /*post*/
 .post-container {
   display: flex;
