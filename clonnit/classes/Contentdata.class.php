@@ -34,6 +34,36 @@ public function GetAllPosts(){
 }
 
 
+public function SerachPosts($name){
+    $sql = 'SELECT * FROM post WHERE post_title LIKE :post_title ORDER BY id DESC';
+    $stmt = $this->Connect()->prepare($sql);
+
+    $postsarray = array();
+    $name = "%$name%";
+    $stmt->execute(['post_title' => $name]);
+
+    while($posts = $stmt->fetch()){
+        $fid = $posts->id;
+        $ftitle = $posts->post_title;
+        $fcontent = $posts->post_content;
+        $time = $posts->timeOfPost;
+        $FPost = new Content($fid,$ftitle,$fcontent,$time);
+        array_push($postsarray,$FPost);
+        
+
+    }
+
+    return $postsarray;
+}
+
+
+public function DeletePost($id){
+    $sql = 'DELETE FROM post WHERE id = :id';
+    $stmt = $this->Connect()->prepare($sql);
+    $stmt->execute(['id' => $id]);
+}
+
+
 
 public function GetAPostByID($id){
     $sql = 'SELECT * FROM post WHERE id=:id ';
@@ -47,6 +77,8 @@ public function GetAPostByID($id){
         $FPost = new Content($fid,$ftitle,$fcontent,$time);
         return $FPost;
 }
+
+
 
 
 public function PostComment($author_id,$post_id,$comment){
@@ -75,6 +107,7 @@ public function GetAllComments($post_id){
 
     return $commentsarray;
 }
+
 
 }
 ?>

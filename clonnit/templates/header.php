@@ -27,8 +27,10 @@ session_start(); ?>
               echo "<a href='postcreation.php' class='navButtons' id='homeBtn'>Post</a>";
             } ?>
             <div class="search-box">
+            <form method="get" action="index.php">
                 <input class="search-txt" type="text" name="search" id="search" placeholder="Search Clonnit">
-                <a class="search-btn" href="#"><i class="fas fa-search"></i></a>
+                <button type="submit" class="search-btn"> <i class="fas fa-search"></i>  </button>
+            </form>
             </div>
             <?php if (isset($_SESSION['username'])) {
               echo "<a href='scripts/logout.php' class='navButtons' id='profileBtn'>Logout</a>";
