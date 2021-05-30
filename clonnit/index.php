@@ -82,7 +82,7 @@ include_once './includes/autoload.inc.php';
                   $var_id .
                   '">  <div class="left-title">  <h2> ' .
                   $value->Gettitle() .
-                  ' </h2> </a> ';
+                  ' </h2> </a> </div> ';
               }
             } else {
               $var_id = $value->GetID();
