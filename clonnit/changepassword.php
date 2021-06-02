@@ -64,7 +64,7 @@ $password = '';
 
 
 <section class="credentials-container">
-    <h3>Log into your account</h3>
+    <h3>Update your password</h3>
     <form action="changepassword.php" method="POST">
         <input type="password" name="tpassword" placeholder="Current password" value="<?php echo htmlspecialchars($tpassword) ?>"><br>
         <div class="error-msg-credentials"><?php echo $errors['tpassword']?></div>

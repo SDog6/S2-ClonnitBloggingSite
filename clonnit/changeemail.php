@@ -33,8 +33,16 @@ $email = '';
             $id = $_SESSION["id"];
             
             $loginattempt = new Userdata();
-            $loginattempt->UpdateEmail($email,$id);
-            header("location: changeemail.php?error=none");
+
+            $takenemail = $loginattempt->GetEmailCount($email);
+            if($takenemail === 0){
+                $loginattempt->UpdateEmail($email,$id);
+                header("location: changeemail.php?error=none");
+            }
+            else {
+                header("location: changeemail.php?error=taken");
+            }
+         
 
            
         }
@@ -49,7 +57,7 @@ $email = '';
 
 
 <section class="credentials-container">
-    <h3>Log into your account</h3>
+    <h3>Update your email</h3>
     <form action="changeemail.php" method="POST">
         <input type="email" name="email" placeholder="Email" value="<?php echo htmlspecialchars($email) ?>"><br>
         <div class="error-msg-credentials"><?php echo $errors['email']?></div>
@@ -60,6 +68,12 @@ $email = '';
  if(isset($_GET["error"])){
     if($_GET["error"] == "none"){
         echo "<p>Email updated!</p>";
+    }
+}
+
+if(isset($_GET["error"])){
+    if($_GET["error"] == "taken"){
+        echo "<p>Email already taken!</p>";
     }
 }
 ?>
