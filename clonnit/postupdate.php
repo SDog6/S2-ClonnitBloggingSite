@@ -49,20 +49,13 @@ if (isset($_POST['creation'])) {
     <form action="postupdate.php?edit_id=<?php echo $edit; ?>" method="POST">
         <input type="text" name="title" placeholder="Title" value="<?php echo $passedpost->Gettitle(); ?>"><br>
         <div class="error-msg-credentials"><?php echo $errors['title']; ?></div>
-        <textarea name="content" placeholder="Content"><?php echo $passedpost->Getcontent(); ?> <?php echo htmlspecialchars(
-          $content
-        ); ?></textarea><br>
+        <textarea name="content" placeholder="Content"><?php echo $passedpost->Getcontent(); ?></textarea><br>
         <div class="error-msg-credentials"><?php echo $errors[
           'content'
         ]; ?></div>
         <input type="submit" name="creation" value="Update"><br>
     </form>
 
-    <?php if (isset($_GET['error'])) {
-      if ($_GET['error'] == 'none') {
-        echo '<p>Sucessful post edit!</p>';
-      }
-    } ?>
 </section>
 
 
