@@ -26,15 +26,10 @@ if (isset($_POST['creation'])) {
     $title = $_POST['title'];
     $content = $_POST['content'];
 
-    $id = $_SESSION['id'];
-
-    $loginattempt = new Userdata();
-    $founduser = $loginattempt->GetAUserByID($id);
-    $username = $founduser->GetUsername();
+    $edit = $_GET['edit_id'];
 
     $creation = new Contentdata();
-    $creation->CreateNewPost($title, $content, $id);
-    header('location: postcreation.php?error=none');
+    $creation->UpdatePost($title, $content, $edit);
   }
 }
 ?>
@@ -44,24 +39,28 @@ if (isset($_POST['creation'])) {
 <?php include_once './scripts/protectedpage.php'; ?>
 
 <section class="post-container">
-    <h3>Create a new post</h3>
-    <form action="postcreation.php" method="POST">
-        <input type="text" name="title" placeholder="Title" value="<?php echo htmlspecialchars(
-          $title
-        ); ?>"><br>
+    <h3>Edit post</h3>
+
+    <?php 
+    $edit = $_GET['edit_id'];
+    $posts = new Contentdata();
+    $passedpost = $posts->GetAPostByID($edit);
+    ?>
+    <form action="postupdate.php?edit_id=<?php echo $edit; ?>" method="POST">
+        <input type="text" name="title" placeholder="Title" value="<?php echo $passedpost->Gettitle(); ?>"><br>
         <div class="error-msg-credentials"><?php echo $errors['title']; ?></div>
-        <textarea name="content" placeholder="Content"><?php echo htmlspecialchars(
+        <textarea name="content" placeholder="Content"><?php echo $passedpost->Getcontent(); ?> <?php echo htmlspecialchars(
           $content
         ); ?></textarea><br>
         <div class="error-msg-credentials"><?php echo $errors[
           'content'
         ]; ?></div>
-        <input type="submit" name="creation" value="Create"><br>
+        <input type="submit" name="creation" value="Update"><br>
     </form>
 
     <?php if (isset($_GET['error'])) {
       if ($_GET['error'] == 'none') {
-        echo '<p>Sucessful post creation</p>';
+        echo '<p>Sucessful post edit!</p>';
       }
     } ?>
 </section>

@@ -11,6 +11,12 @@ public function CreateNewPost($newtitle,$newcontent,$author){
     
 }
 
+public function UpdatePost($newtitle,$newcontent,$id){
+    $sql = 'UPDATE post SET post_title = :post_title, post_content = :post_content WHERE id = :id';
+    $stmt = $this->Connect()->prepare($sql);
+    $stmt->execute(['post_title' => $newtitle, 'post_content' => $newcontent,'id' => $id]);
+    
+}
 
 public function GetAllPosts(){
     $sql = 'SELECT * FROM post ORDER BY id DESC';
