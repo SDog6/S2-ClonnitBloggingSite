@@ -23,6 +23,8 @@ echo "<br>";
 echo "Password: ********** ";
 echo "<br>";
 echo "<br>";
+echo '<a href="index.php?history='.$id.'">View post history</a>';
+echo "<br>";
 echo "<a href='changeemail.php' >Change email</a>";
 echo "<br>";
 echo "<a href='changepassword.php' >Change password</a>";

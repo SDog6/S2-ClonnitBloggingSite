@@ -35,6 +35,29 @@ public function GetAllPosts(){
 }
 
 
+public function GetAllPostsByAuthor($author){
+    $sql = 'SELECT * FROM post WHERE author_id = ? ORDER BY id DESC';
+    $stmt = $this->Connect()->prepare($sql);
+
+    $postsarray = array();
+    $stmt->execute([$author]);
+
+    while($posts = $stmt->fetch()){
+        $fid = $posts->id;
+        $ftitle = $posts->post_title;
+        $fcontent = $posts->post_content;
+        $time = $posts->timeOfPost;
+        $author = $posts->author_id;
+        $FPost = new Content($fid,$ftitle,$fcontent,$time,$author);
+        array_push($postsarray,$FPost);
+        
+
+    }
+
+    return $postsarray;
+}
+
+
 public function SerachPosts($name){
     $sql = 'SELECT * FROM post WHERE post_title LIKE :post_title ORDER BY id DESC';
     $stmt = $this->Connect()->prepare($sql);
